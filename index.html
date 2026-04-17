@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InstaJet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="text-align:center; background:black; color:white; font-family:sans-serif;">
+
+    <br><br>
+
+    <img src="/static/mylogo.png" width="120"><br>
+
+    <h1 style="color:yellow;">InstaJet</h1>
+    <h3>High-Speed Video Downloader</h3>
+
+    <br>
+
+    <!-- FORM -->
+    <form action="/download" method="POST">
+
+        <input type="text" name="url" placeholder="Paste Instagram URL here"
+        style="padding:10px; width:90%; max-width:300px; border-radius:8px; border:none; outline:none;">
+
+        <br><br>
+
+        <button type="submit"
+        style="padding:10px 20px; background:orange; border:none; border-radius:8px; cursor:pointer;">
+            Download Now
+        </button>
+
+    </form>
+
+    <br><br>
+
+    <!-- VIDEO PREVIEW -->
+    {% if video_url %}
+
+    <div style="text-align:center; margin-top:20px;">
+
+        <video style="width:90%; max-width:400px;" controls>
+            <source src="{{ video_url }}" type="video/mp4">
+        </video>
+
+        <br><br>
+
+        <!-- DOWNLOAD BUTTON -->
+        <a href="{{ video_url }}" download>
+            <button style="padding:12px 20px;
+            background:linear-gradient(45deg, orange, yellow);
+            border:none;
+            border-radius:12px;
+            font-size:16px;
+            font-weight:bold;
+            width:90%;
+            max-width:300px;
+            cursor:pointer;">
+                Download Video
+            </button>
+        </a>
+
+    </div>
+
+    {% endif %}
+
+    <p style="font-size:12px; color:gray; margin-top:20px; text-align:center;">
+        © 2026 InstaJet • Created by Joy • All rights reserved
+    </p>
+
+</body>
+</html>
