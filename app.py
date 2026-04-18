@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
 import os
 import yt_dlp
@@ -5,10 +6,12 @@ import glob
 
 app = Flask(__name__)
 
+# Ensure downloads folder exists
 if not os.path.exists("downloads"):
     os.makedirs("downloads")
 
 
+# 🔹 Home page
 @app.route("/")
 def home():
     video_url = request.args.get("video_url")
@@ -16,6 +19,13 @@ def home():
     return render_template("index.html", video_url=video_url, error=error)
 
 
+# 🔹 Google verification file route (IMPORTANT)
+@app.route('/google17227ae48f6bea90.html')
+def google_verify():
+    return send_from_directory('.', 'google17227ae48f6bea90.html')
+
+
+# 🔹 Download route
 @app.route("/download", methods=["POST"])
 def download():
     url = request.form.get("url")
@@ -47,10 +57,12 @@ def download():
         return redirect(url_for("home", error="Failed to download video"))
 
 
+# 🔹 Serve downloaded files
 @app.route("/downloads/<filename>")
 def serve_video(filename):
     return send_from_directory("downloads", filename)
 
 
+# 🔹 Run app
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
