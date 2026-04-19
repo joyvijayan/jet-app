@@ -1,135 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>InstaJet</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="EVTtxu_E36ZH0Ef" />
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-            color: white;
-            font-family: sans-serif;
-            text-align: center;
-        }
-
-        .container {
-            margin-top: 80px;
-            padding: 20px;
-        }
-
-        .logo {
-            width: 120px;
-            border-radius: 20px;
-        }
-
-        .title {
-            color: #FFD700;
-            font-size: 42px;
-            margin: 10px 0;
-        }
-
-        .subtitle {
-            color: gray;
-            margin-bottom: 30px;
-        }
-
-        input {
-            width: 90%;
-            max-width: 320px;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .btn {
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, orange, gold);
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        .video-box {
-            margin-top: 30px;
-        }
-
-        video {
-            width: 90%;
-            max-width: 400px;
-            border-radius: 15px;
-        }
-
-        .download-btn {
-            margin-top: 20px;
-            padding: 12px 20px;
-            background: linear-gradient(45deg, orange, yellow);
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            width: 90%;
-            max-width: 300px;
-            cursor: pointer;
-        }
-
-        .footer {
-            font-size: 12px;
-            color: gray;
-            margin-top: 40px;
-        }
-    </style>
-
+    <title>InstaJet - Fast Instagram Downloader</title>
 </head>
 
-<body>
+<body style="text-align:center; background:black; color:white; font-family:sans-serif; margin:0; padding:20px;">
 
-    <div class="container">
+    <br><br>
 
-        <img src="/static/logo.png" class="logo">
+    <img src="{{ url_for('static', filename='mylogo.png') }}" width="120" alt="InstaJet Logo"><br>
 
-        <h1 class="title">InstaJet</h1>
-        <p class="subtitle">High-Speed Video Downloader</p>
+    <h1 style="color:yellow; margin-top:10px;">InstaJet</h1>
+    <h3 style="font-weight:lighter;">High-Speed Video Downloader</h3>
 
-        <form action="/download" method="POST">
-            <input type="text" name="url" placeholder="Paste Instagram URL here" required>
-            <br>
-            <button class="btn" type="submit">Download Now</button>
-        </form>
+    <br>
 
-        {% if video_url %}
+    {% if error %}
+    <p style="color: #ff4d4d; background: #220000; padding: 10px; border-radius: 8px; display: inline-block;">
+        {{ error }}
+    </p>
+    {% endif %}
 
-        <div class="video-box">
+    <br>
 
-            <video controls>
-                <source src="{{ video_url }}" type="video/mp4">
-            </video>
+    <form action="/download" method="POST">
+        <input type="text" name="url" placeholder="Paste Instagram URL here" 
+               required
+               style="padding:15px; width:90%; max-width:350px; border-radius:10px; border:none; outline:none; font-size:16px;">
+        
+        <br><br>
 
-            <br>
+        <button type="submit" 
+                style="padding:12px 30px; background:orange; border:none; border-radius:10px; cursor:pointer; font-weight:bold; font-size:16px; color:black;">
+            Download Now
+        </button>
+    </form>
 
-            <a href="{{ video_url }}" download>
-                <button class="download-btn">Download Video</button>
-            </a>
+    <br><br>
 
-        </div>
+    {% if video_url %}
+    <div style="text-align:center; margin-top:20px; background:#111; padding:20px; border-radius:15px; display:inline-block; width:90%; max-width:450px;">
+        
+        <video style="width:100%; border-radius:10px;" controls>
+            <source src="{{ video_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
-        {% endif %}
+        <br><br>
 
-        <p class="footer">
-            © 2026 InstaJet • Created by Joy • All rights reserved
-        </p>
-
+        <a href="{{ video_url }}" download>
+            <button style="padding:15px 25px; 
+            background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+            color:white;
+            border:none; 
+            border-radius:12px; 
+            font-size:18px; 
+            font-weight:bold; 
+            width:100%;
+            cursor:pointer;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);">
+                Save to Device
+            </button>
+        </a>
     </div>
+    {% endif %}
+
+    <br><br>
+
+    <p style="font-size:12px; color:gray; margin-top:40px;">
+        © 2026 InstaJet • Created by Joy • All rights reserved
+    </p>
 
 </body>
 </html>

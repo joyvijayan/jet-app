@@ -1,68 +1,70 @@
-
-from flask import Flask, render_template, request, send_from_directory, redirect, url_for
+from flask import Flask, render_template, request, send_from_directory
 import os
 import yt_dlp
 import glob
 
 app = Flask(__name__)
 
-# Ensure downloads folder exists
-if not os.path.exists("downloads"):
-    os.makedirs("downloads")
+# Create downloads folder if it doesn't exist
+DOWNLOAD_FOLDER = "downloads"
+if not os.path.exists(DOWNLOAD_FOLDER):
+    os.makedirs(DOWNLOAD_FOLDER)
 
-
-# 🔹 Home page
 @app.route("/")
 def home():
-    video_url = request.args.get("video_url")
-    error = request.args.get("error")
-    return render_template("index.html", video_url=video_url, error=error)
+    return render_template("index.html", video_url=None)
 
-
-# 🔹 Google verification file route (IMPORTANT)
-@app.route('/google17227ae48f6bea90.html')
-def google_verify():
-    return send_from_directory('.', 'google17227ae48f6bea90.html')
-
-
-# 🔹 Download route
 @app.route("/download", methods=["POST"])
 def download():
     url = request.form.get("url")
 
-    # Allow only Instagram links
+    # Basic check for Instagram links
     if not url or "instagram.com" not in url:
-        return redirect(url_for("home", error="Only Instagram links allowed"))
+        return render_template("index.html", error="Please paste a valid Instagram link", video_url=None)
 
+    # yt-dlp configuration
     ydl_opts = {
-        'outtmpl': 'downloads/%(title)s.%(ext)s',
+        'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
         'format': 'best',
-        'quiet': True
+        'quiet': True,
+        'noplaylist': True,
     }
 
     try:
+        # Clear old files to save server space
+        files = glob.glob(f"{DOWNLOAD_FOLDER}/*")
+        for f in files:
+            try:
+                os.remove(f)
+            except:
+                continue
+
+        # Download the video
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.extract_info(url, download=True)
 
-        files = glob.glob("downloads/*")
-        latest_file = max(files, key=os.path.getctime)
-
+        # Find the newly downloaded file
+        new_files = glob.glob(f"{DOWNLOAD_FOLDER}/*")
+        if not new_files:
+            return render_template("index.html", error="Could not save video", video_url=None)
+            
+        latest_file = max(new_files, key=os.path.getctime)
         filename = os.path.basename(latest_file)
+        
+        # Path for the video player in the browser
         video_path = f"/downloads/{filename}"
 
-        return redirect(url_for("home", video_url=video_path))
+        return render_template("index.html", video_url=video_path)
 
     except Exception as e:
-        print(e)
-        return redirect(url_for("home", error="Failed to download video"))
+        print(f"Error: {e}")
+        return render_template("index.html", error="Failed to fetch video. Try another link.", video_url=None)
 
-
-# 🔹 Serve downloaded files
 @app.route("/downloads/<filename>")
 def serve_video(filename):
-    return send_from_directory("downloads", filename)
+    return send_from_directory(DOWNLOAD_FOLDER, filename)
 
-
-# 🔹 Run app
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # Configured for hosting services like Render or PythonAnywhere
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
