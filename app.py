@@ -14,6 +14,16 @@ if not os.path.exists(DOWNLOAD_FOLDER):
 def home():
     return render_template("index.html", video_url=None)
 
+# Privacy Policy Page
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
+
+# Terms and Conditions Page
+@app.route("/terms")
+def terms():
+    return render_template("terms.html")
+
 @app.route("/download", methods=["POST"])
 def download():
     url = request.form.get("url")
