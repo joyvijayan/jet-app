@@ -10,20 +10,27 @@ DOWNLOAD_FOLDER = "downloads"
 if not os.path.exists(DOWNLOAD_FOLDER):
     os.makedirs(DOWNLOAD_FOLDER)
 
+# 1. Home Page
 @app.route("/")
 def home():
     return render_template("index.html", video_url=None)
 
-# Privacy Policy Page
+# 2. About Us Page
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+# 3. Privacy Policy Page
 @app.route("/privacy")
 def privacy():
     return render_template("privacy.html")
 
-# Terms and Conditions Page
+# 4. Terms and Conditions Page
 @app.route("/terms")
 def terms():
     return render_template("terms.html")
 
+# 5. Video Download Logic (Original functionality preserved)
 @app.route("/download", methods=["POST"])
 def download():
     url = request.form.get("url")
@@ -70,6 +77,7 @@ def download():
         print(f"Error: {e}")
         return render_template("index.html", error="Failed to fetch video. Try another link.", video_url=None)
 
+# 6. Serving the downloaded video
 @app.route("/downloads/<filename>")
 def serve_video(filename):
     return send_from_directory(DOWNLOAD_FOLDER, filename)
