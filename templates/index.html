@@ -8,22 +8,22 @@
     <style>
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; padding: 0; }
         .container { padding: 50px 20px; }
-        
-        /* Logo Styling */
         .logo-img { width: 120px; height: auto; margin-bottom: 10px; }
-        
         h1 { color: #ffcc00; font-size: 2.5rem; margin-top: 0; }
         p { color: #ccc; margin-bottom: 30px; }
-        
         input[type="text"] { width: 85%; max-width: 500px; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff; font-size: 16px; }
         button { padding: 15px 40px; border-radius: 10px; border: none; background: linear-gradient(to right, #ffcc00, #ff9900); color: #000; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 20px; width: 85%; max-width: 500px; }
-        
         .footer { margin-top: 80px; padding: 30px; border-top: 1px solid #222; }
         .footer-links a { color: #888; text-decoration: none; margin: 0 10px; font-size: 14px; }
         .footer-links a:hover { color: #ffcc00; }
-        
-        /* Style for Developer Name */
         .dev-name { color: #ffcc00; font-size: 14px; font-weight: bold; margin-top: 5px; display: block; }
+        
+        /* New Content Section Styles */
+        .content-section { max-width: 900px; margin: 40px auto; text-align: left; padding: 20px; background: #0a0a0a; border-radius: 15px; }
+        .content-section h2 { color: #ffcc00; font-size: 1.5rem; }
+        .blog-card { border-bottom: 1px solid #222; padding: 15px 0; }
+        .blog-card h3 { color: #eee; font-size: 1.2rem; }
+        .blog-card p { color: #999; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -57,15 +57,30 @@
         {% endif %}
     </div>
 
-    <div style="max-width: 800px; margin: 50px auto; padding: 20px; text-align: left; color: #666; font-size: 14px; line-height: 1.6;">
-        <h3 style="color: #999;">Fast & Free Instagram Downloader</h3>
-        <p>InstaJet is the ultimate tool to download Instagram videos, reels, and photos. Our downloader is designed to be fast and easy to use. Simply paste the link and save your favorite content directly to your device in high definition.</p>
+    <div class="content-section">
+        <h2>Latest Instagram Tips & Guides</h2>
+        
+        <div class="blog-card">
+            <h3>How to Download Instagram Reels in HD?</h3>
+            <p>Using InstaJet is the easiest way to save reels. Just copy the link of the reel you like, paste it into our search bar, and hit download. Our tool ensures that the quality remains high-definition for the best viewing experience.</p>
+        </div>
+
+        <div class="blog-card">
+            <h3>Why Your Instagram Reels Aren't Getting Views?</h3>
+            <p>To go viral in 2026, you need to use trending audio within the first 24 hours of its release. Also, ensure your lighting is good and the first 3 seconds are engaging enough to stop the scroll.</p>
+        </div>
+
+        <div class="blog-card">
+            <h3>Instagram Privacy: Who Can See Your Downloads?</h3>
+            <p>When you use third-party tools like InstaJet, your downloads are private. However, always respect the creators' rights and do not use downloaded content for commercial purposes without permission.</p>
+        </div>
     </div>
 
     <footer class="footer">
         <p style="color: #444; font-size: 12px; margin-bottom: 5px;">&copy; 2026 InstaJet. All rights reserved.</p>
         <span class="dev-name">Developed by Joy</span>
         <div class="footer-links" style="margin-top: 15px;">
+            <a href="/about">About Us</a> |
             <a href="/privacy">Privacy Policy</a> | 
             <a href="/terms">Terms & Conditions</a>
         </div>
