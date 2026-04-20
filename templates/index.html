@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaJet - Best Instagram Video & Reels Downloader | HD Quality</title>
-    <meta name="description" content="Download Instagram Videos, Reels, and Photos for free with InstaJet. Fast, easy, and high-quality Instagram downloader.">
-    <meta name="keywords" content="Instagram downloader, download instagram reels, insta video saver, instajet, free video downloader">
+    <title>InstaJet - Best Instagram Video & Reels Downloader</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; margin: 0; padding: 0; }
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; padding: 0; }
         .container { padding: 50px 20px; }
-        h1 { color: #ffcc00; font-size: 3rem; margin-bottom: 10px; }
-        p { color: #ccc; }
-        input[type="text"] { width: 80%; max-width: 500px; padding: 15px; border-radius: 25px; border: none; margin-top: 20px; font-size: 16px; }
-        button { padding: 15px 30px; border-radius: 25px; border: none; background-color: #ffcc00; color: #000; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        
+        /* Logo Styling */
+        .logo-img { width: 120px; height: auto; margin-bottom: 10px; }
+        
+        h1 { color: #ffcc00; font-size: 2.5rem; margin-top: 0; }
+        p { color: #ccc; margin-bottom: 30px; }
+        
+        input[type="text"] { width: 85%; max-width: 500px; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff; font-size: 16px; }
+        button { padding: 15px 40px; border-radius: 10px; border: none; background: linear-gradient(to right, #ffcc00, #ff9900); color: #000; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 20px; width: 85%; max-width: 500px; }
+        
         .footer { margin-top: 80px; padding: 30px; border-top: 1px solid #222; }
         .footer-links a { color: #888; text-decoration: none; margin: 0 10px; font-size: 14px; }
         .footer-links a:hover { color: #ffcc00; }
@@ -21,37 +25,41 @@
 <body>
 
     <div class="container">
+        <div style="margin-top: 20px;">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="InstaJet Logo" class="logo-img">
+        </div>
+        
         <h1>InstaJet</h1>
-        <p>Fastest way to download Instagram Reels & Videos</p>
+        <p>High-Speed Instagram Video Downloader</p>
         
         <form action="/download" method="POST">
-            <input type="text" name="url" placeholder="Paste Instagram link here..." required>
+            <input type="text" name="url" placeholder="Paste Instagram URL here..." required>
             <br>
             <button type="submit">Download Now</button>
         </form>
 
         {% if video_url %}
             <div style="margin-top: 30px;">
-                <video width="320" height="540" controls autoplay>
+                <video width="320" height="540" controls autoplay style="border-radius: 15px; border: 2px solid #333;">
                     <source src="{{ video_url }}" type="video/mp4">
                 </video>
                 <br>
-                <a href="{{ video_url }}" download style="display:inline-block; margin-top:10px; color:yellow; text-decoration:none; font-weight:bold;">Click here to Save to Gallery</a>
+                <a href="{{ video_url }}" download style="display:inline-block; margin-top:15px; color:#ffcc00; text-decoration:none; font-weight:bold; border: 1px solid #ffcc00; padding: 10px 20px; border-radius: 5px;">Save to Gallery</a>
             </div>
         {% endif %}
 
         {% if error %}
-            <p style="color: red; margin-top: 20px;">{{ error }}</p>
+            <p style="color: #ff4444; margin-top: 20px;">{{ error }}</p>
         {% endif %}
     </div>
 
-    <div style="max-width: 800px; margin: 50px auto; padding: 20px; text-align: left; color: #777; font-size: 14px;">
-        <h3>Why choose InstaJet?</h3>
-        <p>InstaJet is a powerful Instagram video downloader that allows you to save high-quality content directly to your device. Whether it's an inspiring Reel or a funny video, our tool ensures a seamless download experience. Simply paste the link and hit download.</p>
+    <div style="max-width: 800px; margin: 50px auto; padding: 20px; text-align: left; color: #666; font-size: 14px; line-height: 1.6;">
+        <h3 style="color: #999;">Fast & Free Instagram Downloader</h3>
+        <p>InstaJet is the ultimate tool to download Instagram videos, reels, and photos. Our downloader is designed to be fast and easy to use. Simply paste the link and save your favorite content directly to your device in high definition.</p>
     </div>
 
     <footer class="footer">
-        <p style="color: #444;">&copy; 2026 InstaJet. All rights reserved.</p>
+        <p style="color: #444; font-size: 12px;">&copy; 2026 InstaJet. All rights reserved.</p>
         <div class="footer-links">
             <a href="/privacy">Privacy Policy</a> | 
             <a href="/terms">Terms & Conditions</a>
