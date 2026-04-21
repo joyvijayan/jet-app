@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, send_from_directory
 import os
 import yt_dlp
@@ -29,6 +28,11 @@ def privacy():
 @app.route("/terms")
 def terms():
     return render_template("terms.html")
+
+# --- New Route for Contact Us ---
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 @app.route('/sitemap.xml')
 def sitemap():
