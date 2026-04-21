@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, send_from_directory
+
+from flask import Flask, render_template, request, send_from_directory, Response
 import os
 import yt_dlp
 import glob
@@ -12,6 +13,12 @@ LOG_FILE = "download_history.log"
 # Ensure the download directory exists
 if not os.path.exists(DOWNLOAD_FOLDER):
     os.makedirs(DOWNLOAD_FOLDER)
+
+# --- New Route for robots.txt (Google AdSense Fix) ---
+@app.route('/robots.txt')
+def robots_txt():
+    content = "User-agent: *\nAllow: /"
+    return Response(content, mimetype='text/plain')
 
 @app.route("/")
 def home():
@@ -93,7 +100,7 @@ def download():
         # Select the most recently created file
         latest_file = max(new_files, key=os.path.getctime)
         filename = os.path.basename(latest_file)
-        video_path = f"/downloads/{filename}"
+        video_path = f="/downloads/{filename}"
 
         return render_template("index.html", video_url=video_path)
 
