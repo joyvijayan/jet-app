@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_from_directory
 import os
 import yt_dlp
@@ -32,6 +33,16 @@ def terms():
 @app.route('/sitemap.xml')
 def sitemap():
     return render_template('sitemap.xml'), 200, {'Content-Type': 'application/xml'}
+
+# --- New Route to Check Total Download Count ---
+@app.route("/stats")
+def show_stats():
+    count = 0
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, "r") as f:
+            # Counts the number of lines in the log file
+            count = len(f.readlines())
+    return f"<h1>Total Downloads: {count}</h1>"
 
 @app.route("/download", methods=["POST"])
 def download():
