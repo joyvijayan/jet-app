@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, send_from_directory, Response
 import os
 import yt_dlp
@@ -36,7 +35,6 @@ def privacy():
 def terms():
     return render_template("terms.html")
 
-# --- New Route for Contact Us ---
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
@@ -45,13 +43,11 @@ def contact():
 def sitemap():
     return render_template('sitemap.xml'), 200, {'Content-Type': 'application/xml'}
 
-# --- New Route to Check Total Download Count ---
 @app.route("/stats")
 def show_stats():
     count = 0
     if os.path.exists(LOG_FILE):
         with open(LOG_FILE, "r") as f:
-            # Counts the number of lines in the log file
             count = len(f.readlines())
     return f"<h1>Total Downloads: {count}</h1>"
 
@@ -59,19 +55,15 @@ def show_stats():
 def download():
     url = request.form.get("url")
 
-    # Basic validation for Instagram links
     if not url or "instagram.com" not in url:
         return render_template("index.html", error="Please paste a valid Instagram link", video_url=None)
 
-    # --- Start Download Tracking ---
     try:
         with open(LOG_FILE, "a") as f:
             f.write(f"Requested URL: {url}\n")
     except Exception as log_error:
         print(f"Logging Error: {log_error}")
-    # --- End Download Tracking ---
 
-    # yt-dlp options
     ydl_opts = {
         'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
         'format': 'best',
@@ -80,7 +72,6 @@ def download():
     }
 
     try:
-        # Cleanup: Remove old files before starting a new download
         files = glob.glob(f"{DOWNLOAD_FOLDER}/*")
         for f in files:
             try:
@@ -88,19 +79,18 @@ def download():
             except:
                 continue
 
-        # Download video using yt-dlp
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.extract_info(url, download=True)
 
-        # Find the newly downloaded file
         new_files = glob.glob(f"{DOWNLOAD_FOLDER}/*")
         if not new_files:
             return render_template("index.html", error="Could not save video", video_url=None)
             
-        # Select the most recently created file
         latest_file = max(new_files, key=os.path.getctime)
         filename = os.path.basename(latest_file)
-        video_path = f="/downloads/{filename}"
+        
+        # --- FIXED LINE BELOW ---
+        video_path = f"/downloads/{filename}"
 
         return render_template("index.html", video_url=video_path)
 
@@ -110,10 +100,8 @@ def download():
 
 @app.route("/downloads/<filename>")
 def serve_video(filename):
-    """Serves the downloaded file to the user."""
     return send_from_directory(DOWNLOAD_FOLDER, filename)
 
 if __name__ == "__main__":
-    # Get port from environment (useful for hosting like Render/Heroku)
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
