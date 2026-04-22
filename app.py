@@ -35,9 +35,24 @@ def privacy():
 def terms():
     return render_template("terms.html")
 
-@app.route("/contact")
+# --- UPDATED CONTACT ROUTE TO FIX 'METHOD NOT ALLOWED' ---
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    if request.method == "POST":
+        # Collecting data from your new 4 boxes
+        name = request.form.get("name")
+        email = request.form.get("email")
+        subject = request.form.get("subject")
+        message = request.form.get("message")
+        
+        # This will print the message in your server logs
+        print(f"New Message: {name} - {email} - {subject} - {message}")
+        
+        # After submission, it shows a success message
+        return "<h1>Thank You!</h1><p>Your message has been sent successfully.</p><a href='/'>Go Back</a>"
+    
+    # If it's a normal visit (GET), it shows the contact page
+    return render_template("index.html") 
 
 @app.route('/sitemap.xml')
 def sitemap():
