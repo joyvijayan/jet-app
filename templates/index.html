@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +31,37 @@
         .logo-img { width: 120px; height: auto; margin-bottom: 10px; }
         h1 { color: #ffcc00; font-size: 2.5rem; margin-top: 0; }
         p { color: #ccc; margin-bottom: 30px; }
-        input[type="text"] { width: 85%; max-width: 500px; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff; font-size: 16px; }
-        button { padding: 15px 40px; border-radius: 10px; border: none; background: linear-gradient(to right, #ffcc00, #ff9900); color: #000; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 20px; width: 85%; max-width: 500px; }
+        
+        /* Form Styling */
+        input[type="text"], input[type="email"], textarea { 
+            width: 85%; 
+            max-width: 500px; 
+            padding: 15px; 
+            border-radius: 10px; 
+            border: 1px solid #333; 
+            background: #111; 
+            color: #fff; 
+            font-size: 16px; 
+            margin-bottom: 15px;
+            outline: none;
+        }
+        input:focus, textarea:focus { border-color: #ffcc00; }
+        
+        button { 
+            padding: 15px 40px; 
+            border-radius: 10px; 
+            border: none; 
+            background: linear-gradient(to right, #ffcc00, #ff9900); 
+            color: #000; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 16px; 
+            width: 85%; 
+            max-width: 500px; 
+            transition: 0.3s;
+        }
+        button:hover { opacity: 0.9; transform: scale(1.02); }
+
         .footer { margin-top: 80px; padding: 30px; border-top: 1px solid #222; }
         .footer-links a { color: #888; text-decoration: none; margin: 0 10px; font-size: 14px; }
         .footer-links a:hover { color: #ffcc00; }
@@ -42,6 +72,8 @@
         .blog-card { border-bottom: 1px solid #222; padding: 15px 0; }
         .blog-card h3 { color: #eee; font-size: 1.2rem; }
         .blog-card p { color: #999; font-size: 14px; }
+
+        .contact-container { text-align: center; }
     </style>
 </head>
 <body>
@@ -85,13 +117,26 @@
 
         <div class="blog-card">
             <h3>Why Your Instagram Reels Aren't Getting Views?</h3>
-            <p>To go viral in 2026, you need to use trending audio within the first 24 hours of its release. Also, ensure your lighting is good and the first 3 seconds are engaging enough to stop the scroll.</p>
+            <p>To go viral in 2026, you need to use trending audio within the first 24 hours of its release. Ensure your lighting is good and the first 3 seconds are engaging enough to stop the scroll.</p>
         </div>
 
         <div class="blog-card">
             <h3>Instagram Privacy: Who Can See Your Downloads?</h3>
-            <p>When you use third-party tools like InstaJet, your downloads are private. However, always respect the creators' rights.</p>
+            <p>When you use third-party tools like InstaJet, your downloads are private. However, always respect the creators' rights and original content ownership.</p>
         </div>
+    </div>
+
+    <div class="content-section contact-container">
+        <h2>Contact Us</h2>
+        <p>Have questions or feedback? Send us a message below.</p>
+        
+        <form action="/contact" method="POST" style="margin-top: 20px;">
+            <input type="text" name="name" placeholder="Full Name" required><br>
+            <input type="email" name="email" placeholder="Email Address" required><br>
+            <input type="text" name="subject" placeholder="Subject"><br>
+            <textarea name="message" placeholder="Write your message here..." required style="height: 120px;"></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
     </div>
 
     <footer class="footer">
@@ -103,7 +148,7 @@
             <a href="/terms">Terms & Conditions</a> |
             <a href="/contact" style="color: #ffcc00; font-weight: bold;">Contact Us</a>
         </div>
-        <p style="color: #666; font-size: 13px; margin-top: 10px;">Email: instajet.official@gmail.com</p>
+        <p style="color: #666; font-size: 13px; margin-top: 10px;">Support: instajet.official@gmail.com</p>
     </footer>
 
 </body>
