@@ -79,13 +79,14 @@ def download():
     except Exception as log_error:
         print(f"Logging Error: {log_error}")
 
-    # yt-dlp options with headers to prevent being blocked as a bot
+    # yt-dlp options with Cookies to prevent being blocked
     ydl_opts = {
         'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',
         'format': 'best',
         'quiet': True,
         'noplaylist': True,
         'nocheckcertificate': True,
+        'cookiefile': 'cookies.txt',  # നിങ്ങൾ അപ്‌ലോഡ് ചെയ്ത ഫയൽ ഇവിടെ കണക്ട് ചെയ്തു
         'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
         'http_headers': {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
