@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_from_directory, Response
 import os
 import yt_dlp
@@ -18,6 +19,11 @@ if not os.path.exists(DOWNLOAD_FOLDER):
 def robots_txt():
     content = "User-agent: *\nAllow: /"
     return Response(content, mimetype='text/plain')
+
+# Route for ads.txt (Added for AdSense Verification)
+@app.route('/ads.txt')
+def ads_txt():
+    return send_from_directory(os.getcwd(), 'ads.txt')
 
 @app.route("/")
 def home():
@@ -86,7 +92,7 @@ def download():
         'quiet': True,
         'noplaylist': True,
         'nocheckcertificate': True,
-        'cookiefile': 'cookies.txt',  # നിങ്ങൾ അപ്‌ലോഡ് ചെയ്ത ഫയൽ ഇവിടെ കണക്ട് ചെയ്തു
+        'cookiefile': 'cookies.txt',
         'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
         'http_headers': {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
