@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_from_directory, Response
 import os
 import yt_dlp
@@ -80,6 +81,10 @@ def link_issues():
 @app.route("/blog/video-king")
 def video_king():
     return render_template("video-king.html")
+
+@app.route("/blog/unique-fonts")
+def unique_fonts():
+    return render_template("unique-fonts.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
