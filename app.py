@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_from_directory, Response
 import os
 import yt_dlp
@@ -52,6 +53,10 @@ def reels_guide():
 @app.route("/blog/viral-tips")
 def viral_tips():
     return render_template("viral-tips.html")
+
+@app.route("/blog/privacy-guide")
+def privacy_guide():
+    return render_template("privacy-guide.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
