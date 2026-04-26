@@ -57,6 +57,10 @@ def viral_tips():
 @app.route("/blog/privacy-guide")
 def privacy_guide():
     return render_template("privacy-guide.html")
+
+@app.route("/blog/posting-time")
+def posting_time():
+    return render_template("posting-time.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
