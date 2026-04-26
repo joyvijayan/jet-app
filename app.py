@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, send_from_directory, Response
 import os
 import yt_dlp
@@ -77,6 +76,10 @@ def reuse_content():
 @app.route("/blog/link-issues")
 def link_issues():
     return render_template("link-issues.html")
+
+@app.route("/blog/video-king")
+def video_king():
+    return render_template("video-king.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
