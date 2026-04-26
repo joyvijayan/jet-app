@@ -88,6 +88,10 @@ def unique_fonts():
 @app.route("/blog/engagement-guide")
 def engagement_guide():
     return render_template("engagement-guide.html")
+
+@app.route("/blog/digital-privacy")
+def digital_privacy():
+    return render_template("digital-privacy.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
