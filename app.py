@@ -69,6 +69,10 @@ def font_world_guide():
 @app.route("/blog/high-quality")
 def high_quality():
     return render_template("high-quality.html")
+
+@app.route("/blog/reuse-content")
+def reuse_content():
+    return render_template("reuse-content.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
