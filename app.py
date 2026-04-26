@@ -61,6 +61,10 @@ def privacy_guide():
 @app.route("/blog/posting-time")
 def posting_time():
     return render_template("posting-time.html")
+
+@app.route("/blog/font-world-guide")
+def font_world_guide():
+    return render_template("font-world-guide.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
