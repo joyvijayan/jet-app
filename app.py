@@ -41,6 +41,16 @@ def privacy():
 def terms():
     return render_template("terms.html")
 
+# --- BLOG ROUTES START ---
+@app.route("/blog")
+def blog_home():
+    return render_template("blog.html")
+
+@app.route("/blog/reels-guide")
+def reels_guide():
+    return render_template("reels-guide.html")
+# --- BLOG ROUTES END ---
+
 # Contact route to handle form submissions
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
