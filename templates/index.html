@@ -72,6 +72,8 @@
         .blog-card h3 { color: #eee; font-size: 1.2rem; margin-bottom: 10px; }
         .blog-card p { color: #999; font-size: 14px; line-height: 1.6; }
         .blog-img { width: 100%; max-width: 550px; border-radius: 10px; margin: 15px 0; display: block; margin-left: auto; margin-right: auto; border: 1px solid #333; }
+        .read-more { color: #ffcc00; text-decoration: none; font-weight: bold; font-size: 14px; display: inline-block; margin-top: 5px; }
+        .read-more:hover { text-decoration: underline; }
 
         .contact-container { text-align: center; }
     </style>
@@ -107,9 +109,12 @@
         <h2>Latest Instagram Tips & Guides</h2>
         
         <div class="blog-card">
-            <h3>1. How to Download Instagram Reels in HD?</h3>
+            <a href="/blog/reels-guide" style="text-decoration: none; color: inherit;">
+                <h3>1. How to Download Instagram Reels in HD?</h3>
+            </a>
             <img src="{{ url_for('static', filename='insta-hd.jpg') }}" alt="Instagram HD Download Guide" class="blog-img">
-            <p>Using InstaJet is the easiest way to save reels. Just copy the link of the reel you like, paste it into our search bar, and hit download. Our tool fetches the highest quality available.</p>
+            <p>Using InstaJet is the easiest way to save reels. Just copy the link of the reel you like, paste it into our search bar, and hit download...</p>
+            <a href="/blog/reels-guide" class="read-more">Read Full Article →</a>
         </div>
 
         <div class="blog-card">
