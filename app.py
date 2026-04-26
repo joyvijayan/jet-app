@@ -73,6 +73,10 @@ def high_quality():
 @app.route("/blog/reuse-content")
 def reuse_content():
     return render_template("reuse-content.html")
+
+@app.route("/blog/link-issues")
+def link_issues():
+    return render_template("link-issues.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
