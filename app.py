@@ -65,6 +65,10 @@ def posting_time():
 @app.route("/blog/font-world-guide")
 def font_world_guide():
     return render_template("font-world-guide.html")
+
+@app.route("/blog/high-quality")
+def high_quality():
+    return render_template("high-quality.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
