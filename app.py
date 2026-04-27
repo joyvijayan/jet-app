@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_from_directory, Response
 import os
 import yt_dlp
@@ -92,6 +93,10 @@ def engagement_guide():
 @app.route("/blog/digital-privacy")
 def digital_privacy():
     return render_template("digital-privacy.html")
+
+@app.route("/blog/viral-captions")
+def viral_captions():
+    return render_template("viral-captions.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
