@@ -94,12 +94,12 @@
         </form>
 
         {% if video_url %}
-            <div style="margin-top: 30px;">
-                <video width="320" height="540" controls autoplay style="border-radius: 15px; border: 2px solid #333;">
+            <div style="margin-top: 30px; width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <video width="320" height="540" controls autoplay style="width: 90%; max-width: 320px; height: auto; border-radius: 15px; border: 2px solid #333;">
                     <source src="{{ video_url }}" type="video/mp4">
                 </video>
                 <br>
-                <a href="{{ video_url }}" download style="display:inline-block; margin-top:15px; color:#ffcc00; text-decoration:none; font-weight:bold; border: 1px solid #ffcc00; padding: 10px 20px; border-radius: 5px;">Save to Gallery</a>
+                <a href="{{ video_url }}" download style="display:inline-block; margin-top:15px; color:#ffcc00; text-decoration:none; font-weight:bold; border: 1px solid #ffcc00; padding: 10px 20px; border-radius: 5px; width: 80%; max-width: 300px;">Save to Gallery</a>
             </div>
         {% endif %}
     </div>
@@ -238,7 +238,7 @@
         <h2>Contact Us</h2>
         <p>Have questions or feedback? Send us a message below.</p>
         
-        <form action="/contact" method="POST" style="margin-top: 20px;">
+        <form action="mailto:Instajet.official@gmail.com" method="POST" enctype="text/plain" style="margin-top: 20px;">
             <input type="text" name="name" placeholder="Full Name" required><br>
             <input type="email" name="email" placeholder="Email Address" required><br>
             <textarea name="message" placeholder="Write your message here..." required style="height: 120px;"></textarea><br>
@@ -253,7 +253,7 @@
             <a href="/about">About Us</a> |
             <a href="/privacy">Privacy Policy</a> | 
             <a href="/terms">Terms & Conditions</a> |
-            <a href="/contact" style="color: #ffcc00; font-weight: bold;">Contact Us</a>
+            <a href="mailto:Instajet.official@gmail.com" style="color: #ffcc00; font-weight: bold;">Contact Us</a>
         </div>
     </footer>
 
