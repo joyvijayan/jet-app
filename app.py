@@ -97,6 +97,10 @@ def digital_privacy():
 @app.route("/blog/viral-captions")
 def viral_captions():
     return render_template("viral-captions.html")
+
+@app.route("/blog/social-history")
+def social_history():
+    return render_template("social-history.html")
 # --- BLOG ROUTES END ---
 
 # Contact route to handle form submissions
