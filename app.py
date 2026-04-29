@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, send_from_directory, Response, url_for
 import os
 import yt_dlp
@@ -59,8 +60,8 @@ def privacy():
 def terms():
     return render_template("terms.html")
 
-# --- INDIVIDUAL BLOG/HTML ROUTES (Soft 404 പരിഹരിക്കാൻ) ---
-# ഈ പേജുകൾ നേരിട്ട് വിളിച്ചാൽ വർക്ക് ആകാൻ വേണ്ടിയാണ് ഇങ്ങനെ എഴുതുന്നത്
+# --- INDIVIDUAL HTML ROUTES (Soft 404 പരിഹരിക്കാൻ) ---
+# ഈ റൂട്ടുകൾ ഉണ്ടെങ്കിൽ മാത്രമേ instajet.online/link-issues.html പോലുള്ള ലിങ്കുകൾ നേരിട്ട് പ്രവർത്തിക്കൂ
 
 @app.route("/link-issues.html")
 def link_issues():
